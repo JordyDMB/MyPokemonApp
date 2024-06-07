@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="cardStyle" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">15dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardBackgroundColor">@color/colorWhite</item>
+    </style>
+
+    <style name="CustomTitleAppearance" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/muli</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
