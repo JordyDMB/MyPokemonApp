@@ -1,6 +1,7 @@
 package com.hey.mypokemonapp.ui.adapters.adapterPokemon;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hey.mypokemonapp.core.provider.ImageProvider;
 import com.hey.mypokemonapp.databinding.RowItemPokemonBinding;
 import com.hey.mypokemonapp.domain.model.pokemon.PokemonModel;
+
+import java.util.function.BiConsumer;
 
 public class ViewHolderPokemon extends RecyclerView.ViewHolder {
 
@@ -28,12 +31,14 @@ public class ViewHolderPokemon extends RecyclerView.ViewHolder {
             String idPokemon = TEXT_ID.concat(" ").concat(String.valueOf(pokemonModel.getIdPokemon()));
             binding.tvIdPokemon.setText(idPokemon);
             ImageProvider.getImage(pokemonModel.getIdPokemon(), binding.shapeableImageViewPokemon);
+            binding.shapeableImageViewPokemon.setTransitionName("image_transition_" + pokemonModel.getIdPokemon());
+
         }else {
             binding.tvIdPokemon.setVisibility(View.GONE);
         }
     }
 
-    public void setOnClickListener(Consumer<PokemonModel> onClick) {
-        itemView.setOnClickListener(v -> onClick.accept(this.pokemonModel));
+    public void setOnClickListener(BiConsumer<PokemonModel, ImageView> onClick) {
+        itemView.setOnClickListener(v -> onClick.accept(this.pokemonModel, binding.shapeableImageViewPokemon));
     }
 }

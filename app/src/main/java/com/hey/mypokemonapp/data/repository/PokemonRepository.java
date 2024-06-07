@@ -24,7 +24,7 @@ public class PokemonRepository {
     public MutableLiveData<PokemonResponse> getPokemonByLimits(int limit) {
         final MutableLiveData<PokemonResponse> data = new MutableLiveData<>();
 
-        apiService.getListPokemon(limit).enqueue(new Callback<PokemonResponse>() {
+        apiService.getListPokemonA(limit).enqueue(new Callback<PokemonResponse>() {
             @Override
             public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
                 if (response.isSuccessful()){
@@ -44,7 +44,7 @@ public class PokemonRepository {
 
     public MutableLiveData<PokemonResponse> getPokemonByLimits(int start, int limit) {
         final MutableLiveData<PokemonResponse> data = new MutableLiveData<>();
-        apiService.getListPokemon(start, limit).enqueue(new Callback<PokemonResponse>() {
+        apiService.getListPokemonA(start, limit).enqueue(new Callback<PokemonResponse>() {
             @Override
             public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
                 if (response.isSuccessful()){
@@ -64,7 +64,11 @@ public class PokemonRepository {
 
 
     public Single<PokemonResponse> getPokemon(){
-        return apiService.getListPokemon();
+        return apiService.getListPokemon(40);
+    }
+
+    public Single<PokemonResponse> getPokemonByOffset(){
+        return apiService.getListPokemon(40, 40);
     }
 
 

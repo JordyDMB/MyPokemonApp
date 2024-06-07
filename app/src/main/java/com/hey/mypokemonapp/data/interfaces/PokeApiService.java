@@ -11,14 +11,18 @@ public interface PokeApiService {
 
 
     @GET("pokemon")
-    Call<PokemonResponse> getListPokemon(@Query("limit") int limit);
+    Call<PokemonResponse> getListPokemonA(@Query("limit") int limit);
 
 
     @GET("pokemon")
-    Call<PokemonResponse> getListPokemon(@Query("offset") int offset, @Query("limit") int limit);
+    Call<PokemonResponse> getListPokemonA(@Query("offset") int offset, @Query("limit") int limit);
 
 
-    @GET("pokemon/?limit=40")
-    Single<PokemonResponse> getListPokemon();
+    @GET("pokemon")
+    Single<PokemonResponse> getListPokemon(@Query("limit") int limit);
+
+    @GET("pokemon")
+    Single<PokemonResponse> getListPokemon(@Query("offset") int offset, @Query("limit") int limit);
+
 
 }

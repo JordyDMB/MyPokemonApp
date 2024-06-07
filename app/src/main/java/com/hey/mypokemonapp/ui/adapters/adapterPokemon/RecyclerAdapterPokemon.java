@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
@@ -16,15 +17,16 @@ import com.hey.mypokemonapp.domain.model.pokemon.PokemonModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 
 public class RecyclerAdapterPokemon extends RecyclerView.Adapter<ViewHolderPokemon>{
 
-    private final Consumer<PokemonModel> onClick;
+    private final BiConsumer<PokemonModel, ImageView> onClick;
 
     private final AsyncListDiffer<PokemonModel> mDiffer = new AsyncListDiffer<>(this, DIFF_CALLBACK);
 
 
-    public RecyclerAdapterPokemon(Consumer<PokemonModel> onClick) {
+    public RecyclerAdapterPokemon(BiConsumer<PokemonModel, ImageView> onClick) {
         this.onClick = onClick;
     }
 
