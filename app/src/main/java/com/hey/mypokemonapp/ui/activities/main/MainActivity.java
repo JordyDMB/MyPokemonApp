@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 
     private final RecyclerAdapterPokemon adapterPokemon = new RecyclerAdapterPokemon((pokemonModel, imageView) ->
-            PokemonDetailActivity.start(this, pokemonModel.getIdPokemon(), imageView));
+            PokemonDetailActivity.start(this, pokemonModel.toJSON(), imageView));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

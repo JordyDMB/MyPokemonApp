@@ -29,11 +29,11 @@ public class ViewHolderPokemon extends RecyclerView.ViewHolder {
         if (!pokemon.name.isEmpty()){
             binding.tvNamePokemon.setText(StringUtils.formatName(pokemon.name));
         }
-        if (pokemon.getIdPokemon() != 0) {
-            String idPokemon = TEXT_ID.concat(" ").concat(String.valueOf(pokemon.getIdPokemon()));
+        if (pokemon.getId() != 0) {
+            String idPokemon = TEXT_ID.concat(" ").concat(String.valueOf(pokemon.getId()));
             binding.tvIdPokemon.setText(idPokemon);
-            ImageProvider.getImage(pokemon.getIdPokemon(), binding.shapeableImageViewPokemon);
-            binding.shapeableImageViewPokemon.setTransitionName("image_transition_" + pokemon.getIdPokemon());
+            ImageProvider.getImage(pokemon.getId(), binding.shapeableImageViewPokemon);
+            binding.shapeableImageViewPokemon.setTransitionName("image_transition_" + pokemon.getId());
         }else {
             binding.tvIdPokemon.setVisibility(View.GONE);
         }

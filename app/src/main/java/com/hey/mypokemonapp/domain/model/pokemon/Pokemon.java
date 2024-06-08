@@ -1,5 +1,6 @@
 package com.hey.mypokemonapp.domain.model.pokemon;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Pokemon implements Comparable<Pokemon> {
@@ -12,7 +13,7 @@ public class Pokemon implements Comparable<Pokemon> {
     @SerializedName("url")
     public String url = "";
 
-    public int getIdPokemon(){
+    public int getId(){
         if (id == 0){
             String[] splitUrl = url.split("/");
             String lastSplit = splitUrl[splitUrl.length -1];
@@ -41,5 +42,10 @@ public class Pokemon implements Comparable<Pokemon> {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';
+    }
+
+
+    public String toJSON(){
+        return new Gson().toJson(this);
     }
 }
