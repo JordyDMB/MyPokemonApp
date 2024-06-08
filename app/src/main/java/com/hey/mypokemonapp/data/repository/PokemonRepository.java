@@ -21,54 +21,12 @@ public class PokemonRepository {
         apiService = RetrofitProvider.getInstance().getApi();
     }
 
-    public MutableLiveData<PokemonResponse> getPokemonByLimits(int limit) {
-        final MutableLiveData<PokemonResponse> data = new MutableLiveData<>();
-
-        apiService.getListPokemonA(limit).enqueue(new Callback<PokemonResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
-                if (response.isSuccessful()){
-                    data.postValue(response.body());
-                }else {
-                    data.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<PokemonResponse> call, @NonNull Throwable t) {
-                data.postValue(null);
-            }
-        });
-        return data;
-    }
-
-    public MutableLiveData<PokemonResponse> getPokemonByLimits(int start, int limit) {
-        final MutableLiveData<PokemonResponse> data = new MutableLiveData<>();
-        apiService.getListPokemonA(start, limit).enqueue(new Callback<PokemonResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
-                if (response.isSuccessful()){
-                    data.postValue(response.body());
-                }else {
-                    data.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<PokemonResponse> call, @NonNull Throwable t) {
-                data.postValue(null);
-            }
-        });
-        return data;
-    }
-
-
     public Single<PokemonResponse> getPokemon(){
         return apiService.getListPokemon(40);
     }
 
-    public Single<PokemonResponse> getPokemonByOffset(){
-        return apiService.getListPokemon(40, 40);
+    public Single<PokemonResponse> getPokemonByOffset(int offset, int limit){
+        return apiService.getListPokemon(offset, limit);
     }
 
 

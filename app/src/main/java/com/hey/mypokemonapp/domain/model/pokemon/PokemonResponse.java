@@ -13,7 +13,7 @@ public class PokemonResponse {
     public int count = 0;
 
     @SerializedName("results")
-    public ArrayList<PokemonModel> listPokemon = new ArrayList<>();
+    public ArrayList<Pokemon> listPokemon = new ArrayList<>();
 
 
     @Override

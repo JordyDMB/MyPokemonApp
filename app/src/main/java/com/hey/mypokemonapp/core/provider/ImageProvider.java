@@ -3,7 +3,10 @@ package com.hey.mypokemonapp.core.provider;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.core.content.ContextCompat;
+
 import com.bumptech.glide.Glide;
+import com.hey.mypokemonapp.R;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

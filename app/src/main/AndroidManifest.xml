@@ -15,12 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPokemonApp"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.activities.pokemonDetail.PokemonDetailActivity"
+            android:configChanges="orientation"
             android:exported="false" />
 
         <activity
             android:name=".ui.activities.main.MainActivity"
+            android:configChanges="orientation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

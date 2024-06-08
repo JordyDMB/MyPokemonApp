@@ -1,10 +1,8 @@
 package com.hey.mypokemonapp.domain.model.pokemon;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.annotations.SerializedName;
 
-public class PokemonModel implements Comparable<PokemonModel> {
+public class Pokemon implements Comparable<Pokemon> {
 
     private int id = 0;
 
@@ -26,13 +24,13 @@ public class PokemonModel implements Comparable<PokemonModel> {
     }
 
     @Override
-    public int compareTo(PokemonModel o) {
+    public int compareTo(Pokemon o) {
         return 0 ;
     }
 
 
-    public boolean compare(PokemonModel pokemonModel){
-        return name.equalsIgnoreCase(pokemonModel.name) && url.equalsIgnoreCase(pokemonModel.url);
+    public boolean compare(Pokemon pokemon){
+        return name.equalsIgnoreCase(pokemon.name) && url.equalsIgnoreCase(pokemon.url);
     }
 
 

@@ -1,6 +1,7 @@
 package com.hey.mypokemonapp.core.provider;
 
 import com.hey.mypokemonapp.data.interfaces.PokeApiService;
+import com.hey.mypokemonapp.data.interfaces.PokeDetailApiService;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -28,5 +29,9 @@ public class RetrofitProvider {
 
     public PokeApiService getApi() {
         return retrofit.create(PokeApiService.class);
+    }
+
+    public PokeDetailApiService getDetailApi(){
+        return retrofit.create(PokeDetailApiService.class);
     }
 }

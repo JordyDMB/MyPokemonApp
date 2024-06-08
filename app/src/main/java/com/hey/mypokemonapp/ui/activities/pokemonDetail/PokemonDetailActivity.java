@@ -13,15 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.hey.mypokemonapp.R;
 import com.hey.mypokemonapp.core.provider.ImageProvider;
 import com.hey.mypokemonapp.databinding.ActivityPokemonDetailBinding;
+import com.hey.mypokemonapp.ui.activities.main.MainViewModel;
 
 public class PokemonDetailActivity extends AppCompatActivity {
 
     private static final String ID_KEY  = "id";
     private ActivityPokemonDetailBinding binding;
+    private int id = 0;
+    private PokemonDetailViewModel pokemonDetailViewModel;
 
     public static void start(AppCompatActivity activity, int id, ImageView imageView) {
         Intent starter = new Intent(activity, PokemonDetailActivity.class);
@@ -43,10 +47,12 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
     private void setup() {
         setImage();
+        pokemonDetailViewModel = new ViewModelProvider(this).get(PokemonDetailViewModel.class);
+        pokemonDetailViewModel.get(id);
     }
 
     private void setImage() {
-        int id = getIntent().getIntExtra(ID_KEY, 0);
+        id = getIntent().getIntExtra(ID_KEY, 0);
         binding.image.setTransitionName("image_transition_" + id);
         ImageProvider.getImage(id, binding.image);
     }
