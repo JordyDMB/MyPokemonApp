@@ -17,8 +17,8 @@ public class RecyclerAdapterPagerPokemon extends PagingSource<Integer, Pokemon> 
 
     private final PokeApiService pokeApiService;
 
-    public RecyclerAdapterPagerPokemon(){
-        pokeApiService = RetrofitProvider.getInstance().getApi();
+    public RecyclerAdapterPagerPokemon(PokeApiService pokeApiService){
+        this.pokeApiService = pokeApiService;
     }
 
     @Nullable
