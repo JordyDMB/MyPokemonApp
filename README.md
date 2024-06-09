@@ -21,7 +21,7 @@ Pasos para levantar y ejecutar el Proyecto
 1. Instalar o tener instalado el IDE Android Studio, se lo puede descargar desde: https://developer.android.com/studio
 2. Clonar el repositorio
    Abrir el IDE Android Studio, dar clic en Nuevo -> Project from version control -> pegar la url del repositorio: https://github.com/JordyDMB/MyPokemonApp.git -> clic en clonar.
-   Alternativamente podemos clonar el repositorio desde la terminar del IDE mediante el comando -> git clone https://github.com/JordyDMB/MyPokemonApp.git
+   Alternativamente podemos clonar el repositorio desde la terminal del IDE mediante el comando -> git clone https://github.com/JordyDMB/MyPokemonApp.git
 3. Abrir el proyecto clonado, el IDE procederá a descargar las dependencias y configurar el archivo gradle automáticamente, asegurarse de que la máquina tenga conexión a internet para poder ejecutar este
 paso correctamente. En caso de que falle, el IDE nos mostrará los errores en la ventana de logcat que deberemos corregir manualmente.
 4. Una vez terminado el proceso anterior, conectar un dispositivo físico a la máquina con las opciones de desarrollador activadas, o configurar un emulador desde android studio.
