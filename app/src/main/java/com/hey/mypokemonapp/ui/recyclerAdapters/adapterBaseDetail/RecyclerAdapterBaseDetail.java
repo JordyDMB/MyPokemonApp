@@ -1,4 +1,4 @@
-package com.hey.mypokemonapp.ui.adapters.adapterAbilities;
+package com.hey.mypokemonapp.ui.recyclerAdapters.adapterBaseDetail;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

@@ -1,10 +1,13 @@
 package com.hey.mypokemonapp.ui.activities.main;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,17 +17,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.hey.mypokemonapp.databinding.ActivityMainBinding;
 import com.hey.mypokemonapp.domain.model.pokemon.Pokemon;
 import com.hey.mypokemonapp.ui.activities.pokemonDetail.PokemonDetailActivity;
-import com.hey.mypokemonapp.ui.adapters.adapterPokemon.RecyclerAdapterPokemon;
+import com.hey.mypokemonapp.ui.recyclerAdapters.adapterPokemon.RecyclerAdapterPokemon;
 
 import java.util.ArrayList;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private MainViewModel mainViewModel;
-
+    MainViewModel mainViewModel;
     private final RecyclerAdapterPokemon adapterPokemon = new RecyclerAdapterPokemon((pokemonModel, imageView) ->
             PokemonDetailActivity.start(this, pokemonModel.toJSON(), imageView));
+    private Dialog dialogError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +41,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setup() {
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        setViewModel();
+        setUiConfig();
+        mainViewModel.get();
+    }
+
+    private void setUiConfig() {
         binding.rvPokemon.setAdapter(adapterPokemon);
-        mainViewModel.pokemonDataState.observe(this, this::validateListPokemon);
-        mainViewModel.isLoadingState.observe(this, this::observeProgressLoading);
-        mainViewModel.onErrorState.observe(this,this::observeError);
         binding.rvPokemon.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 assert layoutManager != null;
-                int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                int lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
                 mainViewModel.validateSearchIfNeeded(lastVisibleItem);
             }
         });
-        binding.btnRefresh.setOnClickListener(view -> {
-            refreshData();
-        });
-        mainViewModel.get();
+        binding.btnRefresh.setOnClickListener(view -> refreshData());
+    }
+
+    private void setViewModel() {
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel.pokemonDataState.observe(this, this::validateListPokemon);
+        mainViewModel.isLoadingState.observe(this, this::observeProgressLoading);
+        mainViewModel.onErrorState.observe(this,this::observeError);
     }
 
     @SuppressLint("SetTextI18n")
@@ -69,22 +81,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void observeProgressLoading(Boolean aBoolean) {
-        if (aBoolean){
-            binding.lottie.setVisibility(View.VISIBLE);
-        }else {
-            binding.lottie.setVisibility(View.GONE);
-        }
+        binding.lottie.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
     }
 
     private void observeError(Throwable throwable){
-        new MaterialAlertDialogBuilder(this)
+        if (dialogError != null) if (dialogError.isShowing()) return;
+        dialogError = new MaterialAlertDialogBuilder(this)
                 .setTitle("Error al obtener los datos")
                 .setMessage("Causa: " + throwable.getLocalizedMessage())
                 .setPositiveButton("Aceptar", null)
-                .setNegativeButton("Reintentar", (dialogInterface, i) -> {
-                    mainViewModel.retrySearch();
-                })
-                .show();
+                .setNegativeButton("Reintentar", (dialogInterface, i) -> mainViewModel.retrySearch())
+                .create();
+        dialogError.show();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.hey.mypokemonapp.ui.adapters.adapterPokemon;
+package com.hey.mypokemonapp.ui.recyclerAdapters.adapterPokemon;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.hey.mypokemonapp.ui.adapters.adapterPokemon;
+package com.hey.mypokemonapp.ui.recyclerAdapters.adapterPokemon;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hey.mypokemonapp.core.constant.Strings;
 import com.hey.mypokemonapp.core.provider.ImageProvider;
 import com.hey.mypokemonapp.core.utils.StringUtils;
 import com.hey.mypokemonapp.databinding.RowItemPokemonBinding;
@@ -26,14 +27,14 @@ public class ViewHolderPokemon extends RecyclerView.ViewHolder {
 
     public void setup(Pokemon pokemon) {
         this.pokemon = pokemon;
-        if (!pokemon.name.isEmpty()){
-            binding.tvNamePokemon.setText(StringUtils.formatName(pokemon.name));
-        }
+
+        binding.tvNamePokemon.setText(StringUtils.formatName(pokemon.name));
+
         if (pokemon.getId() != 0) {
             String idPokemon = TEXT_ID.concat(" ").concat(String.valueOf(pokemon.getId()));
             binding.tvIdPokemon.setText(idPokemon);
             ImageProvider.getImage(pokemon.getId(), binding.shapeableImageViewPokemon);
-            binding.shapeableImageViewPokemon.setTransitionName("image_transition_" + pokemon.getId());
+            binding.shapeableImageViewPokemon.setTransitionName(Strings.IMAGE_TRANSITION + pokemon.getId());
         }else {
             binding.tvIdPokemon.setVisibility(View.GONE);
         }
