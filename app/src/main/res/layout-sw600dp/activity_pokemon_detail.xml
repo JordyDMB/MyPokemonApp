@@ -28,7 +28,6 @@
                 android:id="@+id/imagePokemon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_default"
                 android:adjustViewBounds="true"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerInside" />
@@ -98,10 +97,11 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
                 android:text="@string/weight_title"
                 android:textSize="@dimen/text_big_x"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/weightPokemon"
                 app:layout_constraintTop_toBottomOf="@id/tvIdPokemon" />
 
             <TextView
@@ -124,17 +124,17 @@
                 android:text="@string/type_title"
                 android:textSize="@dimen/text_big_x"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/weightPokemon" />
+                app:layout_constraintStart_toStartOf="@+id/rvTypesPokemon"
+                app:layout_constraintTop_toBottomOf="@id/tvIdPokemon" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTypesPokemon"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/weightPokemon"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 tools:itemCount="2"
                 tools:listitem="@layout/row_item_detail_base" />
@@ -153,12 +153,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAbilitiesPokemon"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                tools:itemCount="3"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 tools:listitem="@layout/row_item_detail_base" />
 

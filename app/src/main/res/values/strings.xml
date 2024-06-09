@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyPokemonApp</string>
+    <string name="type_title">Tipos</string>
+    <string name="weight_title">Peso</string>
+    <string name="sprites_title">Sprites</string>
+    <string name="abilities_title">Habilidades</string>
+    <string name="moves_title">Movimientos</string>
 </resources>

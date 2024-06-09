@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    id('dagger.hilt.android.plugin')
+
 
 }
 
@@ -61,9 +63,12 @@ dependencies {
     implementation libs.paging.runtime
     implementation libs.lottie
 
-
-
     implementation libs.hilt.android
+    annotationProcessor libs.hilt.compiler
+
+    implementation libs.palette
+
+
 
 }
 
