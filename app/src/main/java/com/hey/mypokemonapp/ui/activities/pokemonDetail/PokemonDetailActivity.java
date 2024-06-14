@@ -122,6 +122,6 @@ public class PokemonDetailActivity extends AppCompatActivity {
                     pokemonDetailViewModel.get();
                 }).create();
         dialogError.show();
-
     }
+
 }

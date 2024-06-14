@@ -93,12 +93,11 @@ public class MainViewModel extends ViewModel {
     }
 
 
-
     public void retrySearch() {
         if (pokemonDataState.getValue() == null)
             get();
         else
-            validateSearchIfNeeded(pokemonDataState.getValue().size());
+            validateSearchIfNeeded(pokemonDataState.getValue().size()-1);
     }
 
     public void refreshAllData() {
